@@ -395,6 +395,8 @@ class IcarusTouchWidget(Widget):
         # If there isn't such a device, connect to the default one.
         
         c = pygame.midi.get_count()
+        if c < 1:
+            raise Exception('No MIDI device found')
         id_device_from_settings = -1
         #print '%s midi devices found' % c
         for i in range(c):
@@ -764,4 +766,3 @@ class IcarusTouch(App):
 
 if __name__ in ('__main__', '__android__'):
     IcarusTouch().run()
-    
